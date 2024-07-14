@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Conteúdo RPG</title>
+</head>
+<body>
+  <h1>Conteúdo RPG</h1>
+  <div id="content">
+    <p>Carregando...</p>
+  </div>
+  <script src="scripts.js"></script>
+  <script>
+    async function fetchRPGContent() {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        alert('Você precisa estar logado para acessar esta página.');
+        window.location.href = 'index.html';
+        return;
+      }
+
+      const response = await fetch('http://localhost:3000/rpg-content', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        document.getElementById('content').innerText = data.message;
+      } else {
+        alert('Erro ao carregar conteúdo: ' + data.message);
+        localStorage.removeItem('token');
+        window.location.href = 'index.html';
+      }
+    }
+
+    fetchRPGContent();
+  </script>
+</body>
+</html>
