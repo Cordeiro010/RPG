@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div id="login">
+
+    <div class="caixa">
+        <img src="../static/img/logo.jpg" alt="">
+        <h1>Register</h1>
+
+        <form action="/register" method="post">
+           
+            <div class="name">
+                <input type="text" placeholder="Nome">
+            </div>
+
+            <div class="usuario">
+                <label for="username"></label>
+                <input type="text" placeholder="Usuário" id="username" name="username" required><br>
+            </div>
+            
+            <div class="senha">
+                <label for="password"></label>
+                <input type="password" placeholder="Senha" id="password" name="password" required><br>
+            </div>
+            
+            <div class="senha">
+                <label for="confirm_password"></label>
+                <input type="password" placeholder="Confirme sua senha" id="confirm_password" name="confirm_password" required><br>
+            </div>
+
+            <div class="entrar">
+                <p>Já tem uma conta? <a href="/login">Entre aqui.</a></p>
+                <input type="submit" value="Cadastrar">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul>
+            {% for category, message in messages %}
+                <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+        {% endwith %}
+    </div>
+    </div>
+</body>
+</html>

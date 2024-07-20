@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Bem Vindo!</title>
+ 
+</head>
+
+<body id="principal">
+
+    <div id="login">
+
+        <div class="caixa">
+            
+            <img src="../static/img/logo.jpg" alt="">
+            <h1>Bem Vindo a Campanha</h1>
+            <h2>Entes Queridos </h2>
+
+            <div class="menu">
+                <a href="/login"><input type="submit" value="Logar"></a>{% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <ul>
+                    {% for category, message in messages %}
+                        <li class="{{ category }}">{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+                {% endwith %}
+
+            </div>
+            <div><h1></h1></div>
+
+            <div class="menu">
+              <a href="/register"><input type="submit" value="Cadastrar"></a>{% with messages = get_flashed_messages(with_categories=true) %}
+              {% if messages %}
+                  <ul>
+                  {% for category, message in messages %}
+                      <li class="{{ category }}">{{ message }}</li>
+                  {% endfor %}
+                  </ul>
+              {% endif %}
+              {% endwith %}
+            </div>
+
+        </div>
+
+    </div>
+    
+</body>
+
+</html>
